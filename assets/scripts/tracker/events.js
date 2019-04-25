@@ -20,17 +20,27 @@ const onAddFriend = (event) => {
 
 const onEditFriend = (event) => {
   event.preventDefault()
-
   const data = getFormFields(event.target)
-  api.editFriend(data)
+  const id = $(event.target).data('id')
+  api.editFriend(data, id)
     .then(ui.editFriendSuccess)
     .catch(ui.editFriendFail)
+}
+
+const onDeleteFriend = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  api.deleteFriend(id)
+    .then(() => onViewFriends(event))
+    .catch(ui.deleteFriendFail)
 }
 
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.add-friend-form').on('submit', onAddFriend)
-  $('.edit-friend-form').on('submit', onEditFriend)
+  $('body').on('submit', '.edit-friend-form', onEditFriend)
+  // $('.edit-friend-form').on('submit', onEditFriend)
+  $('body').on('click', '.delete-friend', onDeleteFriend)
 }
 
 module.exports = {

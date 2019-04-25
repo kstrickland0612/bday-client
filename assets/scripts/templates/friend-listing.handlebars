@@ -10,7 +10,21 @@
     <span>
       {{friend.dob}}
     </span>
-    <button class="btn btn-primary edit-friend" data-id="{{friend.id}}">Edit</button>
+    <!-- this opens a modal  -->
+    <!-- <button type="button" class="btn btn-primary edit-friend" data-toggle="modal" data-target="#edit-friend">
+      Edit
+    </button> -->
+
+    <!-- this is the submit form -->
+    <form class="edit-friend-form" data-id="{{friend.id}}">
+        <!-- <div class="edit-friend-message"></div> -->
+        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+        <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+        <input type="submit" class="btn btn-primary edit-friend-button" value="Edit Friend">
+    </form>
+
+    <!-- <button class="btn btn-primary edit-friend" data-id="{{friend.id}}">Edit</button> -->
     <button class="btn btn-danger delete-friend" data-id="{{friend.id}}">Delete</button>
   </section>
 {{/each}}

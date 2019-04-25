@@ -29,26 +29,39 @@ const addFriend = function (data) {
   })
 }
 
-const editFriend = function (data) {
+const editFriend = function (data, id) {
+  console.log(id)
+  console.log(data)
   return $.ajax({
-    url: config.apiUrl + '/friends/' + store.friend.id,
+    url: config.apiUrl + `/friends/${id}`,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
-  //   data: {
-  //   'friend': {
-  //     'first_name': data,
-  //     'last_name': ,
-  //     'dob':
-  //   }
-  // }
+    data: {
+      'friend': {
+        'first_name': data.first_name,
+        'last_name': data.last_name,
+        'dob': data.dob
+      }
+    }
+  })
+}
+
+const deleteFriend = function (id) {
+  console.log(id)
+  return $.ajax({
+    url: config.apiUrl + `/friends/${id}`,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
 module.exports = {
   getFriends,
   addFriend,
-  editFriend
+  editFriend,
+  deleteFriend
 }
