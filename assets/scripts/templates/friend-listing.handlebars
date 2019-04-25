@@ -1,0 +1,16 @@
+{{#each friends as |friend|}}
+  {{log friend}}
+  <section data-id="{{friend.id}}">
+    <span>
+    {{friend.first_name}}
+    </span>
+    <span>
+      {{friend.last_name}}
+    </span>
+    <span>
+      {{friend.dob}}
+    </span>
+    <button class="btn btn-primary edit-friend" data-id="{{friend.id}}">Edit</button>
+    <button class="btn btn-danger delete-friend" data-id="{{friend.id}}">Delete</button>
+  </section>
+{{/each}}

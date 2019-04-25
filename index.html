@@ -14,12 +14,45 @@
     <body>
       <h1>bday</h1>
 
-      <div class="user-message">hello</div>
+<!-- View Friends button -->
+      <button type="button" class="btn btn-primary view-friends-button">View Friends</button>
 
+<!-- View Friends window -->
+      <div id="view-friends" class="view-friends">
+      </div>
+
+<!-- Add Friend form -->
+      <form class="add-friend-form">
+        <fieldset>
+          <legend>Add Friend</legend>
+          <input type="text" class="form-control" name="first_name" placeholder="Last Name">
+          <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+          <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+          <button type="submit" class="btn btn-primary add-friend-button">Add Friend!</button>
+        </fieldset>
+      </form>
+
+<!-- Edit Friend form -->
+      <form class="edit-friend-form">
+        <fieldset>
+          <legend>Edit Friend</legend>
+          <input type="text" class="form-control" name="first_name" placeholder="First Name">
+          <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+          <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+          <button type="submit" class="btn btn-primary edit-friend-button">Edit Friend!</button>
+        </fieldset>
+      </form>
+
+
+<!-- User Message -->
+      <div class="user-message"></div>
+
+<!-- Sign Out button -->
       <form id="sign-out">
           <button type="submit" class="btn btn-primary">Sign out</button>
       </form>
 
+<!-- Change Password button and modal-->
       <button type="button" class="btn btn-primary change-password-button" data-toggle="modal" data-target="#changePW">
         Change Password
       </button>
@@ -49,6 +82,7 @@
           </div>
         </div>
 
+<!-- Sign up and sign in forms -->
       <div class="sign-in-container">
 
         <form class="auth-form" id="sign-up">
@@ -72,7 +106,6 @@
           </fieldset>
         </form>
       </div>
-
 
 
     </body>

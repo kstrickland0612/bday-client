@@ -8,6 +8,9 @@
 
 const authevents = require('./auth/authevents.js')
 
+const trackerevents = require('./tracker/events.js')
+
 $(() => {
   authevents.addHandlers()
+  trackerevents.addHandlers()
 })
