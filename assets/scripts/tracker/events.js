@@ -69,6 +69,24 @@ const onDeleteEvent = (event) => {
     .catch(ui.deleteEventFail)
 }
 
+const onMyAccount = (event) => {
+  $('.my-account').show()
+  $('.add-friend-form').hide()
+  $('.add-event-form').hide()
+}
+
+const onAddFriendLink = (event) => {
+  $('.add-friend-form').show()
+  $('.add-event-form').hide()
+  $('.my-account').hide()
+}
+
+const onAddEventLink = (event) => {
+  $('.add-event-form').show()
+  $('.add-friend-form').hide()
+  $('.my-account').hide()
+}
+
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.view-events-button').on('click', onViewEvents)
@@ -79,6 +97,9 @@ const addHandlers = () => {
   // $('.edit-friend-form').on('submit', onEditFriend)
   $('body').on('click', '.delete-friend', onDeleteFriend)
   $('body').on('click', '.delete-event', onDeleteEvent)
+  $('.account-link').on('click', onMyAccount)
+  $('.add-friend-link').on('click', onAddFriendLink)
+  $('.add-event-link').on('click', onAddEventLink)
 }
 
 module.exports = {

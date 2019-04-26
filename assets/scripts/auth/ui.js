@@ -8,12 +8,17 @@ const fail = function (data) {
 const signUpSuccess = function (data) {
   $('.user-message').text('Sign up success!')
   $('form').trigger('reset')
+  $('#sign-up').hide()
+  $('#sign-in').show()
 }
 
 const signInSuccess = function (data) {
   $('.user-message').text('Sign in success!')
   $('form').trigger('reset')
   store.user = data.user
+  $('#sign-in').hide()
+  $('.nav').show()
+  $('#sign-out').show()
 }
 
 const changePwSuccess = function (data) {
@@ -30,6 +35,8 @@ const signOutSuccess = function (data) {
   $('.user-message').text('Sign out success!')
   $('form').trigger('reset')
   store.user = null
+  $('#sign-in').show()
+  $('.my-account').hide()
 }
 
 module.exports = {

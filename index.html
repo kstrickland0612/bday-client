@@ -14,19 +14,99 @@
     <body>
       <h1>bday</h1>
 
-<!-- View Friends button -->
-      <button type="button" class="btn btn-primary view-friends-button">View Friends</button>
+<!-- NAV BAR -->
 
-<!-- View Friends window -->
+  <ul class="nav">
+    <li class="nav-item-account">
+      <a class="nav-link account-link" href="#">My Account</a>
+    </li>
+    <li class="nav-item-add-friend">
+      <a class="nav-link add-friend-link" href="#">Add Friend</a>
+    </li>
+    <li class="nav-item-add-event">
+      <a class="nav-link add-event-link" href="#">Add Event</a>
+    </li>
+  </ul>
+
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <!-- Sign Out button -->
+            <form id="sign-out">
+                <button type="submit" class="btn btn-primary">Sign out</button>
+            </form>
+    </li>
+  </ul>
+
+
+<!-- ACCOUNT VIEW -->
+
+<section class="my-account">
+
+  <!-- Change Password modal-->
+    <div class="modal fade" id="changePW" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <form id="change-password-form">
+                <div class="changepw-message"></div>
+                <input type="password" name="passwords[old]" placeholder="old password">
+                <input type="password" name="passwords[new]" placeholder="new password">
+                <input type="submit" class="btn btn-primary change-password-submit" value="Change Password">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- Nav list for account -->
+
+  <div class="account-nav">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <!-- Change Password button-->
+          <button type="button" class="btn btn-primary change-password-button" data-toggle="modal" data-target="#changePW">
+            Change Password
+          </button>
+      </li>
+      <li class="nav-item">
+        <!-- View Friends button -->
+          <button type="button" class="btn btn-primary view-friends-button">View Friends</button>
+      </li>
+
+      <li class="nav-item">
+        <!-- View Events button -->
+          <button type="button" class="btn btn-primary view-events-button">View Events</button>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+  <!-- Window for viewing friends and events (populated with handlebars) -->
+
+  <div class="view-window">
+
+    <!-- View Friends window -->
       <div id="view-friends" class="view-friends">
       </div>
 
-<!-- View Events button -->
-      <button type="button" class="btn btn-primary view-events-button">View Events</button>
-
-<!-- View Events window -->
+    <!-- View Events window -->
       <div id="view-events" class="view-events">
       </div>
+
+  </div>
+
+
 
 <!-- Add Friend form -->
       <form class="add-friend-form">
@@ -43,7 +123,7 @@
       <form class="add-event-form">
         <fieldset>
           <legend>Add Event</legend>
-          <input type="integer" class="form-control" name="friend_id" placeholder="Friend ID">
+          <input type="number" class="form-control" name="friend_id" placeholder="Friend ID">
           <input type="text" class="form-control" name="title" placeholder="Event Name">
           <input type="text" class="form-control" name="category" placeholder="Category">
           <input type="date" class="form-control" name="date" placeholder="Event Date">
@@ -55,40 +135,6 @@
 <!-- User Message -->
       <div class="user-message"></div>
 
-<!-- Sign Out button -->
-      <form id="sign-out">
-          <button type="submit" class="btn btn-primary">Sign out</button>
-      </form>
-
-<!-- Change Password button and modal-->
-      <button type="button" class="btn btn-primary change-password-button" data-toggle="modal" data-target="#changePW">
-        Change Password
-      </button>
-
-      <div class="modal fade" id="changePW" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                <form id="change-password-form">
-                  <div class="changepw-message"></div>
-                  <input type="password" name="passwords[old]" placeholder="old password">
-                  <input type="password" name="passwords[new]" placeholder="new password">
-                  <input type="submit" class="btn btn-primary change-password-submit" value="Change Password">
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
 
 <!-- Sign up and sign in forms -->
       <div class="sign-in-container">
