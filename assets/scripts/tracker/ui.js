@@ -3,6 +3,8 @@ const showEventsTemplate = require('../templates/event-listing.handlebars')
 
 const getFriendsSuccess = (data) => {
   const showFriendsHtml = showFriendsTemplate({ friends: data.friends })
+  $('.view-events').hide()
+  $('.view-friends').show()
   $('.view-friends').html(showFriendsHtml)
   $('form').trigger('reset')
 }
@@ -47,6 +49,8 @@ const addEventSuccess = function () {
 
 const getEventsSuccess = (data) => {
   const showEventsHtml = showEventsTemplate({ events: data.events })
+  $('.view-friends').hide()
+  $('.view-events').show()
   $('.view-events').html(showEventsHtml)
   $('form').trigger('reset')
 }

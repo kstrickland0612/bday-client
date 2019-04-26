@@ -73,18 +73,24 @@ const onMyAccount = (event) => {
   $('.my-account').show()
   $('.add-friend-form').hide()
   $('.add-event-form').hide()
+  $('.view-friends').hide()
+  $('.view-events').hide()
 }
 
 const onAddFriendLink = (event) => {
   $('.add-friend-form').show()
   $('.add-event-form').hide()
   $('.my-account').hide()
+  $('.view-friends').hide()
+  $('.view-events').hide()
 }
 
 const onAddEventLink = (event) => {
   $('.add-event-form').show()
   $('.add-friend-form').hide()
   $('.my-account').hide()
+  $('.view-friends').hide()
+  $('.view-events').hide()
 }
 
 const addHandlers = () => {
