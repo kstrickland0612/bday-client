@@ -1,4 +1,5 @@
 const showFriendsTemplate = require('../templates/friend-listing.handlebars')
+const showEventsTemplate = require('../templates/event-listing.handlebars')
 
 const getFriendsSuccess = (data) => {
   const showFriendsHtml = showFriendsTemplate({ friends: data.friends })
@@ -27,15 +28,54 @@ const editFriendSuccess = function () {
 }
 
 const editFriendFail = function () {
-  $('.edit-friend-message').text('Failed to add friend. Please try again.')
+  $('.edit-friend-message').text('Failed to edit friend. Please try again.')
   $('form').trigger('reset')
 }
 
-const deleteFriendSuccess = function () {
-  $('.user-message').text('Friend Deleted')
-}
+// const deleteFriendSuccess = function () {
+//   $('.user-message').text('Friend Deleted')
+// }
 
 const deleteFriendFail = function () {
+  $('.user-message').text('Failed to delete friend. Please try again.')
+}
+
+const addEventSuccess = function () {
+  $('.user-message').text('Event Added!')
+  $('form').trigger('reset')
+}
+
+const getEventsSuccess = (data) => {
+  const showEventsHtml = showEventsTemplate({ events: data.events })
+  $('.view-events').html(showEventsHtml)
+  $('form').trigger('reset')
+}
+
+const getEventsFail = function (data) {
+  $('.view-friends').text('Something went wrong. Please try again.')
+  $('form').trigger('reset')
+}
+
+const addEventFail = function () {
+  $('.user-message').text('Failed to add event. Please try again.')
+  $('form').trigger('reset')
+}
+
+const editEventSuccess = function () {
+  $('.edit-event-message').text('Event Updated!')
+  $('form').trigger('reset')
+}
+
+const editEventFail = function () {
+  $('.edit-event-message').text('Failed to edit event. Please try again.')
+  $('form').trigger('reset')
+}
+
+// const deleteEventSuccess = function () {
+//   $('.user-message').text('Event Deleted')
+// }
+
+const deleteEventFail = function () {
   $('.user-message').text('Failed to delete friend. Please try again.')
 }
 
@@ -46,6 +86,12 @@ module.exports = {
   addFriendFail,
   editFriendSuccess,
   editFriendFail,
-  deleteFriendSuccess,
-  deleteFriendFail
+  deleteFriendFail,
+  getEventsSuccess,
+  getEventsFail,
+  addEventSuccess,
+  addEventFail,
+  editEventSuccess,
+  editEventFail,
+  deleteEventFail
 }
