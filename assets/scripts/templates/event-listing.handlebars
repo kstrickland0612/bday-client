@@ -1,0 +1,65 @@
+{{#each events as |event|}}
+  {{log event}}
+  <section data-id="{{event.id}}">
+    <span>
+    {{event.title}}
+    </span>
+    <span>
+      {{event.category}}
+    </span>
+    <span>
+      {{event.date}}
+    </span>
+    <p>
+      {{event.action}}
+    </p>
+    <p>
+      {{event.friend}}
+    </p>
+
+    <!-- this opens a modal for editing each event -->
+    <button type="button" class="btn btn-primary edit-event" data-toggle="modal" data-target="#event-modal-{{event.id}}">
+      Edit
+    </button>
+
+    <!-- Edit Friend form within a modal-->
+
+    <div class="modal fade" id="event-modal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{event.id}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel{{event.id}}">Edit Friend</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <form class="edit-event-form" data-id="{{event.id}}">
+                  <div class="edit-event-message"></div>
+                  <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                  <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                  <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+                  <input type="submit" class="btn btn-primary edit-event-button" value="Edit Friend">
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- this is the submit form -->
+    <form class="edit-event-form" data-id="{{event.id}}">
+        <!-- <div class="edit-event-message"></div> -->
+        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+        <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+        <input type="submit" class="btn btn-primary edit-event-button" value="Edit Friend">
+    </form>
+
+    <button class="btn btn-danger delete-event" data-id="{{event.id}}">Delete</button>
+  </section>
+{{/each}}

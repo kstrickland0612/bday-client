@@ -14,7 +14,7 @@ const onAddFriend = (event) => {
 
   const data = getFormFields(event.target)
   api.addFriend(data)
-    .then(ui.addFriendSuccess)
+    .then(() => onViewFriends(event))
     .catch(ui.addFriendFail)
 }
 

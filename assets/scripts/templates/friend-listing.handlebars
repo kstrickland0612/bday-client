@@ -10,21 +10,42 @@
     <span>
       {{friend.dob}}
     </span>
-    <!-- this opens a modal  -->
-    <!-- <button type="button" class="btn btn-primary edit-friend" data-toggle="modal" data-target="#edit-friend">
+
+    <!-- this opens a modal for editing each friend -->
+    <button type="button" class="btn btn-primary edit-friend" data-toggle="modal" data-target="#friend-modal-{{friend.id}}">
       Edit
-    </button> -->
+    </button>
 
-    <!-- this is the submit form -->
-    <form class="edit-friend-form" data-id="{{friend.id}}">
-        <!-- <div class="edit-friend-message"></div> -->
-        <input type="text" class="form-control" name="first_name" placeholder="First Name">
-        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
-        <input type="date" class="form-control" name="dob" placeholder="Birthdate">
-        <input type="submit" class="btn btn-primary edit-friend-button" value="Edit Friend">
-    </form>
+    <!-- Edit Friend form within a modal-->
 
-    <!-- <button class="btn btn-primary edit-friend" data-id="{{friend.id}}">Edit</button> -->
+    <div class="modal fade" id="friend-modal-{{friend.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{friend.id}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel{{friend.id}}">Edit Friend</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <form class="edit-friend-form" data-id="{{friend.id}}">
+                  <div class="edit-friend-message"></div>
+                  <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                  <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                  <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+                  <input type="submit" class="btn btn-primary edit-friend-button" value="Edit Friend">
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <button class="btn btn-danger delete-friend" data-id="{{friend.id}}">Delete</button>
+
   </section>
 {{/each}}
