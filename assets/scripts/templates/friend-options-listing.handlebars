@@ -1,0 +1,10 @@
+<select id='options'>
+
+    <option>Choose Friend</option>
+
+    {{#each friends as |friend|}}
+      {{log friend}}
+    <option value="{{friend.id}}">{{friend.first_name}} {{friend.last_name}}</option>
+    {{/each}}
+
+</select>

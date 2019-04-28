@@ -1,5 +1,6 @@
 const showFriendsTemplate = require('../templates/friend-listing.handlebars')
 const showEventsTemplate = require('../templates/event-listing.handlebars')
+const showFriendsAsSelectOptionsTemplate = require('../templates/friend-options-listing.handlebars')
 
 const getFriendsSuccess = (data) => {
   const showFriendsHtml = showFriendsTemplate({ friends: data.friends })
@@ -7,6 +8,16 @@ const getFriendsSuccess = (data) => {
   $('.view-friends').show()
   $('.view-friends').html(showFriendsHtml)
   $('form').trigger('reset')
+}
+
+const getFriendsAsOptionsSuccess = (data) => {
+  const showFriendsAsSelectOptionsHtml = showFriendsAsSelectOptionsTemplate({ friends: data.friends })
+  $('.add-event-form').show()
+  $('#view-options').html(showFriendsAsSelectOptionsHtml)
+  $('.add-friend-form').hide()
+  $('.my-account').hide()
+  $('.view-friends').hide()
+  $('.view-events').hide()
 }
 
 const getFriendsFail = function (data) {
@@ -97,5 +108,6 @@ module.exports = {
   addEventFail,
   editEventSuccess,
   editEventFail,
-  deleteEventFail
+  deleteEventFail,
+  getFriendsAsOptionsSuccess
 }

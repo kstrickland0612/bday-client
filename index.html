@@ -122,10 +122,12 @@
       </form>
 
 <!-- Add Event form -->
+
       <form class="add-event-form">
         <fieldset>
           <legend>Add Event</legend>
-          <input type="number" class="form-control" name="friend_id" placeholder="Friend ID">
+          <div id="view-options"></div>
+          <input type="hidden" name="friend_id" value="friendIdFromForm" id="friendIdFromForm">
           <input type="text" class="form-control" name="title" placeholder="Event Name">
           <input type="text" class="form-control" name="category" placeholder="Category">
           <input type="date" class="form-control" name="date" placeholder="Event Date">
