@@ -5,7 +5,7 @@
 
 import 'bootstrap'
 
-// fullcalendar api
+// fullcalendar
 import '@fullcalendar/core/main.css'
 import '@fullcalendar/daygrid/main.css'
 

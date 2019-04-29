@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>bday</title>
+      <title>Timely</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,30 +12,40 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>bday</h1>
+
+<div class="page-container">
+
+<div class="content-wrap">
+
+      <h1>Timely</h1>
 
 <!-- NAV BAR -->
 
-  <ul class="nav">
-    <li class="nav-item-calendar">
-      <a class="nav-link calendar-link" href="#">Home</a>
-    </li>
-    <li class="nav-item-account">
-      <a class="nav-link account-link" href="#">My Account</a>
-    </li>
-    <li class="nav-item-add-friend">
-      <a class="nav-link add-friend-link" href="#">Add Friend</a>
-    </li>
-    <li class="nav-item-add-event">
-      <a class="nav-link add-event-link" href="#">Add Event</a>
-    </li>
-    <li class="nav-item sign-out">
-      <!-- Sign Out button -->
-            <form id="sign-out">
-                <button type="submit" class="btn btn-primary">Sign out</button>
-            </form>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-light" style="background-image: url('public/wood-grain-nav-background2.jpg')">
+  <a class="navbar-brand" href="#">Timely</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item-calendar">
+        <a class="nav-link calendar-link" href="#">Calendar</a>
+      </li>
+      <li class="nav-item-account">
+        <a class="nav-link account-link" href="#">My Account</a>
+      </li>
+      <li class="nav-item-add-friend">
+        <a class="nav-link add-friend-link" href="#">Add Friend</a>
+      </li>
+      <li class="nav-item-add-event">
+        <a class="nav-link add-event-link" href="#">Add Event</a>
+      </li>
+      <li class="nav-item-sign-out">
+        <a class="nav-link sign-out-link" id="sign-out" href="#">Sign Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
   <!-- User Message -->
   <div class="user-message"></div>
@@ -100,14 +110,14 @@
 
     <!-- View Friends window -->
     <section class="view-window">
-      <div class="view-friends-header">Friends</div>
+      <!-- <div class="view-friends-header">Friends</div> -->
       <div id="view-friends" class="view-friends">
       </div>
     </section>
 
     <!-- View Events window -->
     <section class="view-window">
-      <div class="view-events-header">Events</div>
+      <!-- <div class="view-events-header">Events</div> -->
       <div id="view-events" class="view-events">
       </div>
     </section>
@@ -134,8 +144,15 @@
           <legend>Add Event</legend>
           <div id="view-options"></div>
           <input type="hidden" name="friend_id" value="friendIdFromForm" id="friendIdFromForm">
-          <input type="text" class="form-control" name="title" placeholder="Event Name">
-          <input type="text" class="form-control" name="category" placeholder="Category">
+          <select name="category" id="eventCat">
+            <option>Event Type</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Homecoming">Homecoming</option>
+            <option value="others">Other</option>
+          </select>
+            <input id="category-select" value="" style="display: none;" type="text" class="form-control" name="category" placeholder="enter event type here"/>
           <input type="date" class="form-control" name="date" placeholder="Event Date">
           <input type="text" class="form-control" name="action" placeholder="Something Special">
           <button type="submit" class="btn btn-primary add-event-button">Add Event!</button>
@@ -167,7 +184,17 @@
         </form>
       </div>
 
+<div id="event-notifications"></div>
+
 <div id="calendar"></div>
+
+</div>
+
+<footer>
+  <p>Created by K Strickland</p>
+</footer>
+
+</div>
 
     </body>
 </html>

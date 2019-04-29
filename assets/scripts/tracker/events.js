@@ -128,6 +128,32 @@ const closeEventModalRefresh = function (event) {
   onViewEvents(event)
 }
 
+function checkCat () {
+  if ($('#eventCat option:selected').text() === 'Other') {
+    $('#category-select').show()
+  } else {
+    $('#category-select').val($('#eventCat option:selected').text())
+    $('#category-select').hide()
+  }
+}
+
+function checkCatModal () {
+  if ($('#eventCatModal option:selected').text() === 'Other') {
+    $('#category-select-modal').show()
+  } else {
+    $('#category-select-modal').val($('#eventCatModal option:selected').text())
+    $('#category-select-modal').hide()
+  }
+}
+
+// const calendar = ($('#calendar'), {
+//   plugins: [ dayGridPlugin ],
+//   events: {
+//     url: config.apiUrl + '/events'
+//   }
+//   calendar.render()
+// })
+
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.view-events-button').on('click', onViewEvents)
@@ -146,6 +172,8 @@ const addHandlers = () => {
   $('.edit-event').on('click', clearModalMessages)
   $('body').on('hide.bs.modal', '.edit-friend', closeFriendModalRefresh)
   $('body').on('hide.bs.modal', '.edit-event', closeEventModalRefresh)
+  $('#eventCat').change(checkCat)
+  $(document).change('eventCat-modal', checkCatModal)
 }
 
 module.exports = {

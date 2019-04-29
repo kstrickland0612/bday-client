@@ -17,7 +17,9 @@ const signInSuccess = function (data) {
   $('form').trigger('reset')
   store.user = data.user
   $('#sign-in').hide()
+  $('h1').hide()
   $('.nav').show()
+  $('.navbar').show()
   $('#sign-out').show()
 }
 
@@ -38,11 +40,13 @@ const signOutSuccess = function (data) {
   $('#sign-in').show()
   $('.my-account').hide()
   $('.nav').hide()
+  $('.navbar').hide()
   $('.view-friends').hide()
   $('.view-friends-header').hide()
   $('.view-events').hide()
   $('.view-events-header').hide()
   $('#calendar').hide()
+  $('h1').show()
 }
 
 module.exports = {

@@ -69,8 +69,10 @@ const deleteFriendFail = function () {
 }
 
 const addEventSuccess = function () {
+  $('.user-message').show()
   $('.user-message').text('Event Added!')
   $('form').trigger('reset')
+  $('#category-select').hide()
 }
 
 const getEventsSuccess = (data) => {
@@ -94,16 +96,19 @@ const getEventsFail = function (data) {
 }
 
 const addEventFail = function () {
+  $('.user-message').show()
   $('.user-message').text('Failed to add event. Please try again.')
   $('form').trigger('reset')
 }
 
 const editEventSuccess = function () {
+  $('.edit-event-message').show()
   $('.edit-event-message').text('Event Updated!')
   $('form').trigger('reset')
 }
 
 const editEventFail = function () {
+  $('.edit-event-message').show()
   $('.edit-event-message').text('Failed to edit event. Please try again.')
   $('form').trigger('reset')
   $('.user-message').hide()

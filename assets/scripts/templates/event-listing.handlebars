@@ -35,7 +35,6 @@
                   <form class="edit-event-form" data-id="{{event.id}}">
                     <div class="edit-event-message"></div>
                     <input type="hidden" name="friend_id" value="{{event.friend.id}}">
-                    <input type="text" class="form-control" name="title" placeholder="Event Name" value="{{event.title}}">
                     <input type="text" class="form-control" name="category" placeholder="Category" value="{{event.category}}">
                     <input type="date" class="form-control" name="date" placeholder="Event Date" value="{{event.date}}">
                     <input type="text" class="form-control" name="action" placeholder="Something Special" value="{{event.action}}">
@@ -56,4 +55,5 @@
         </td>
 
       </section>
+
     {{/each}}

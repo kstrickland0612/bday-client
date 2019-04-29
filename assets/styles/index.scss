@@ -1,1 +1,120 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'typography';
+
+h1 {
+ font-family: 'Overpass', sans-serif;
+ font-weight: bold;
+ padding-top: 15px;
+}
+
+.navbar-brand {
+  font-family: 'Overpass', sans-serif;
+  font-weight: bold;
+}
+
+body {
+  background-image: url('public/clock-background.png');
+  background-repeat: no-repeat;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.sign-in-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  fieldset {
+    border: 1px groove;
+    margin: 0 0 1.5em;
+    padding: 0 1.4em 1.4em;
+    width: inherit;
+  }
+
+  legend {
+    border-bottom: 0;
+    padding: 0 10px;
+    width: inherit;
+  }
+
+  .form-control {
+    margin: 5px;
+  }
+}
+
+.add-friend-form,
+.add-event-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 50px;
+
+  fieldset {
+    border: 1px groove;
+    margin: 0 0 1.5em;
+    padding: 0 1.4em 1.4em;
+    width: inherit;
+  }
+
+  legend {
+    border-bottom: 0;
+    padding: 0 10px;
+    width: inherit;
+  }
+
+  .form-control {
+    margin: 5px;
+  }
+}
+
+.my-account {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.nav-item {
+  margin: 10px;
+}
+
+.view-window {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 60px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-start;
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  padding-left: 20px;
+  padding-top: 15px;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5)
+}
