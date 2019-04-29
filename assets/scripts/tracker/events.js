@@ -83,6 +83,7 @@ const onMyAccount = (event) => {
   $('.view-events').hide()
   $('.view-friends-header').hide()
   $('.view-events-header').hide()
+  $('.user-message').hide()
 }
 
 const onAddFriendLink = (event) => {
@@ -93,6 +94,7 @@ const onAddFriendLink = (event) => {
   $('.view-events').hide()
   $('.view-friends-header').hide()
   $('.view-events-header').hide()
+  $('.user-message').hide()
 }
 
 const getFriendId = (event) => {
@@ -106,8 +108,8 @@ const addHandlers = () => {
   $('.add-event-form').on('submit', onAddEvent)
   $(document).on('submit', '.edit-friend-form', onEditFriend)
   $(document).on('submit', '.edit-event-form', onEditEvent)
-  $('body').on('click', '.delete-friend', onDeleteFriend)
-  $('body').on('click', '.delete-event', onDeleteEvent)
+  $(document).on('click', '.delete-friend', onDeleteFriend)
+  $(document).on('click', '.delete-event', onDeleteEvent)
   $('.account-link').on('click', onMyAccount)
   $('.add-friend-link').on('click', onAddFriendLink)
   $('.add-event-link').on('click', onAddEventLink)

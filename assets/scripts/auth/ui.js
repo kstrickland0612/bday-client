@@ -37,6 +37,7 @@ const signOutSuccess = function (data) {
   store.user = null
   $('#sign-in').show()
   $('.my-account').hide()
+  $('.nav').hide()
   $('.view-friends').hide()
   $('.view-friends-header').hide()
   $('.view-events').hide()

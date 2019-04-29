@@ -10,6 +10,7 @@ const getFriendsSuccess = (data) => {
   $('.view-friends-header').show()
   $('.view-friends').html(showFriendsHtml)
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 const getFriendsAsOptionsSuccess = (data) => {
@@ -20,11 +21,13 @@ const getFriendsAsOptionsSuccess = (data) => {
   $('.my-account').hide()
   $('.view-friends').hide()
   $('.view-events').hide()
+  $('.user-message').hide()
 }
 
 const getFriendsFail = function (data) {
   $('.view-friends').text('Something went wrong. Please try again.')
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 const addFriendSuccess = function () {
@@ -40,11 +43,13 @@ const addFriendFail = function () {
 const editFriendSuccess = function () {
   $('.edit-friend-message').text('Friend Updated!')
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 const editFriendFail = function () {
   $('.edit-friend-message').text('Failed to edit friend. Please try again.')
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 // const deleteFriendSuccess = function () {
@@ -68,11 +73,13 @@ const getEventsSuccess = (data) => {
   $('.view-events-header').show()
   $('.view-events').html(showEventsHtml)
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 const getEventsFail = function (data) {
   $('.view-friends').text('Something went wrong. Please try again.')
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
 
 const addEventFail = function () {
@@ -88,11 +95,8 @@ const editEventSuccess = function () {
 const editEventFail = function () {
   $('.edit-event-message').text('Failed to edit event. Please try again.')
   $('form').trigger('reset')
+  $('.user-message').hide()
 }
-
-// const deleteEventSuccess = function () {
-//   $('.user-message').text('Event Deleted')
-// }
 
 const deleteEventFail = function () {
   $('.user-message').text('Failed to delete friend. Please try again.')

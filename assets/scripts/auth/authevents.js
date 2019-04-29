@@ -47,6 +47,11 @@ const onNeedToSignIn = function (event) {
   $('#sign-up').show()
 }
 
+const clearUserMessages = function (event) {
+  $('.user-message').text('')
+  $('.changepw-message').text('')
+}
+
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp).hide()
   $('#sign-in').on('submit', onSignIn)
@@ -60,6 +65,7 @@ const addHandlers = function () {
   $('.add-event-form').hide()
   $('.sign-in-link').on('click', onNeedToSignUp)
   $('.sign-up-link').on('click', onNeedToSignIn)
+  $('.change-password-button').on('click', clearUserMessages)
 }
 
 module.exports = {
