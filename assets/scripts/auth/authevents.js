@@ -57,6 +57,7 @@ const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
+  $('#calendar').hide()
   $('.my-account').hide()
   $('.nav').hide()
   $('.view-events-header').hide()

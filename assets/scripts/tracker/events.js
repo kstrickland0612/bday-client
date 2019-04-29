@@ -2,12 +2,6 @@ const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
 
-const onAddEventLink = (event) => {
-  api.getFriends()
-    .then(ui.getFriendsAsOptionsSuccess)
-    .catch(ui.getFriendsFail)
-}
-
 const onViewFriends = (event) => {
   event.preventDefault()
   api.getFriends()
@@ -84,6 +78,7 @@ const onMyAccount = (event) => {
   $('.view-friends-header').hide()
   $('.view-events-header').hide()
   $('.user-message').hide()
+  $('#calendar').hide()
 }
 
 const onAddFriendLink = (event) => {
@@ -95,10 +90,29 @@ const onAddFriendLink = (event) => {
   $('.view-friends-header').hide()
   $('.view-events-header').hide()
   $('.user-message').hide()
+  $('#calendar').hide()
+}
+
+const onAddEventLink = (event) => {
+  api.getFriends()
+    .then(ui.getFriendsAsOptionsSuccess)
+    .catch(ui.getFriendsFail)
 }
 
 const getFriendId = (event) => {
   $('#friendIdFromForm').val($('#options :selected').val())
+}
+
+const onCalendar = (event) => {
+  $('#calendar').show()
+  $('.my-account').hide()
+  $('.add-friend-form').hide()
+  $('.add-event-form').hide()
+  $('.view-friends').hide()
+  $('.view-events').hide()
+  $('.view-friends-header').hide()
+  $('.view-events-header').hide()
+  $('.user-message').hide()
 }
 
 const addHandlers = () => {
@@ -110,6 +124,7 @@ const addHandlers = () => {
   $(document).on('submit', '.edit-event-form', onEditEvent)
   $(document).on('click', '.delete-friend', onDeleteFriend)
   $(document).on('click', '.delete-event', onDeleteEvent)
+  $('.calendar-link').on('click', onCalendar)
   $('.account-link').on('click', onMyAccount)
   $('.add-friend-link').on('click', onAddFriendLink)
   $('.add-event-link').on('click', onAddEventLink)

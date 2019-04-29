@@ -5,6 +5,10 @@
 
 import 'bootstrap'
 
+// fullcalendar api
+import '@fullcalendar/core/main.css'
+import '@fullcalendar/daygrid/main.css'
+
 // allows usage of new JS features
 require('babel-polyfill')
 

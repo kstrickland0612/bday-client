@@ -42,6 +42,7 @@ const signOutSuccess = function (data) {
   $('.view-friends-header').hide()
   $('.view-events').hide()
   $('.view-events-header').hide()
+  $('#calendar').hide()
 }
 
 module.exports = {

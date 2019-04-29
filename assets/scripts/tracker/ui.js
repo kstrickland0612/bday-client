@@ -22,6 +22,9 @@ const getFriendsAsOptionsSuccess = (data) => {
   $('.view-friends').hide()
   $('.view-events').hide()
   $('.user-message').hide()
+  $('.view-friends-header').hide()
+  $('.view-events-header').hide()
+  $('#calendar').hide()
 }
 
 const getFriendsFail = function (data) {
