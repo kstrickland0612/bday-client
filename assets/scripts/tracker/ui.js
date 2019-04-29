@@ -4,6 +4,9 @@ const showFriendsAsSelectOptionsTemplate = require('../templates/friend-options-
 
 const getFriendsSuccess = (data) => {
   const showFriendsHtml = showFriendsTemplate({ friends: data.friends })
+  $('.edit-friend').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
   $('.view-events').hide()
   $('.view-events-header').hide()
   $('.view-friends').show()
@@ -79,6 +82,9 @@ const getEventsSuccess = (data) => {
   $('.view-events').html(showEventsHtml)
   $('form').trigger('reset')
   $('.user-message').hide()
+  $('.edit-event').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
 }
 
 const getEventsFail = function (data) {

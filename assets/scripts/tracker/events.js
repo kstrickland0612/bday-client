@@ -115,6 +115,19 @@ const onCalendar = (event) => {
   $('.user-message').hide()
 }
 
+const clearModalMessages = function (event) {
+  $('.edit-friend-message').text('')
+  $('.edit-event-message').text('')
+}
+
+const closeFriendModalRefresh = function (event) {
+  onViewFriends(event)
+}
+
+const closeEventModalRefresh = function (event) {
+  onViewEvents(event)
+}
+
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.view-events-button').on('click', onViewEvents)
@@ -129,6 +142,10 @@ const addHandlers = () => {
   $('.add-friend-link').on('click', onAddFriendLink)
   $('.add-event-link').on('click', onAddEventLink)
   $('#view-options').change(getFriendId)
+  $('.edit-friend').on('click', clearModalMessages)
+  $('.edit-event').on('click', clearModalMessages)
+  $('body').on('hide.bs.modal', '.edit-friend', closeFriendModalRefresh)
+  $('body').on('hide.bs.modal', '.edit-event', closeEventModalRefresh)
 }
 
 module.exports = {
