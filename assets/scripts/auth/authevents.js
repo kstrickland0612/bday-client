@@ -54,6 +54,8 @@ const addHandlers = function () {
   $('#sign-out').on('submit', onSignOut)
   $('.my-account').hide()
   $('.nav').hide()
+  $('.view-events-header').hide()
+  $('.view-friends-header').hide()
   $('.add-friend-form').hide()
   $('.add-event-form').hide()
   $('.sign-in-link').on('click', onNeedToSignUp)

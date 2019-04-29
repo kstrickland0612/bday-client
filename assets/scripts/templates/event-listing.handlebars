@@ -1,58 +1,58 @@
-{{#each events as |event|}}
-  {{log event}}
-  <section data-id="{{event.id}}">
-    <span>
-    {{event.title}}
-    </span>
-    <span>
-      {{event.category}}
-    </span>
-    <span>
-      {{event.date}}
-    </span>
-    <p>
-      {{event.action}}
-    </p>
-    <p>
-      {{event.friend_id}}
-    </p>
+<table class="table table-borderless table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Event</th>
+      <th scope="col">Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each events as |event|}}
+      {{log event}}
+      <tr>
+        <th scope="row" data-id="{{event.id}}"></th>
+        <td>{{event.friend.first_name}} {{event.friend.last_name}}'s {{event.category}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.action}}</td>
+        <td>
+        <!-- this opens a modal for editing each event -->
+        <button type="button" class="btn btn-primary edit-event" data-toggle="modal" data-target="#event-modal-{{event.id}}">
+          Edit
+        </button>
+        <!-- Edit Event form within a modal-->
+        <div class="modal fade" id="event-modal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{event.id}}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel{{event.id}}">Edit Event</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
 
-    <!-- this opens a modal for editing each event -->
-    <button type="button" class="btn btn-primary edit-event" data-toggle="modal" data-target="#event-modal-{{event.id}}">
-      Edit
-    </button>
+                  <form class="edit-event-form" data-id="{{event.id}}">
+                    <input type="hidden" name="friend_id" value="{{event.friend.id}}">
+                    <input type="text" class="form-control" name="title" placeholder="Event Name">
+                    <input type="text" class="form-control" name="category" placeholder="Category">
+                    <input type="date" class="form-control" name="date" placeholder="Event Date">
+                    <input type="text" class="form-control" name="action" placeholder="Something Special">
+                    <input type="submit" class="btn btn-primary edit-event-button" value="Edit Event">
+                  </form>
 
-    <!-- Edit Event form within a modal-->
-
-    <div class="modal fade" id="event-modal-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{event.id}}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel{{event.id}}">Edit Event</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-              <form class="edit-event-form" data-id="{{event.id}}">
-                <input type="integer" class="form-control" name="friend_id" placeholder="Friend ID">
-                <input type="text" class="form-control" name="title" placeholder="Event Name">
-                <input type="text" class="form-control" name="category" placeholder="Category">
-                <input type="date" class="form-control" name="date" placeholder="Event Date">
-                <input type="text" class="form-control" name="action" placeholder="Something Special">
-                  <input type="submit" class="btn btn-primary edit-event-button" value="Edit Event">
-              </form>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </td>
+        </td>
+        <td>
+        <button class="btn btn-danger delete-friend" data-id="{{event.id}}">Delete</button>
+        </td>
 
-    <button class="btn btn-danger delete-event" data-id="{{event.id}}">Delete</button>
-
-  </section>
-{{/each}}
+      </section>
+    {{/each}}
