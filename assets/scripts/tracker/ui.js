@@ -31,11 +31,13 @@ const getFriendsFail = function (data) {
 }
 
 const addFriendSuccess = function () {
+  $('.user-message').show()
   $('.user-message').text('Friend Added!')
   $('form').trigger('reset')
 }
 
 const addFriendFail = function () {
+  $('.user-message').show()
   $('.user-message').text('Failed to add friend. Please try again.')
   $('form').trigger('reset')
 }

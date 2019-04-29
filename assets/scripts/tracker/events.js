@@ -20,7 +20,7 @@ const onAddFriend = (event) => {
 
   const data = getFormFields(event.target)
   api.addFriend(data)
-    .then(() => onViewFriends(event))
+    .then(ui.addFriendSuccess)
     .catch(ui.addFriendFail)
 }
 
