@@ -39,9 +39,9 @@
 
                   <form class="edit-friend-form" data-id="{{friend.id}}">
                       <div class="edit-friend-message"></div>
-                      <input type="text" class="form-control" name="first_name" placeholder="First Name">
-                      <input type="text" class="form-control" name="last_name" placeholder="Last Name">
-                      <input type="date" class="form-control" name="dob" placeholder="Birthdate">
+                      <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{friend.first_name}}">
+                      <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{friend.last_name}}">
+                      <input type="date" class="form-control" name="dob" placeholder="Birthdate" value="{{friend.dob}}">
                       <input type="submit" class="btn btn-primary edit-friend-button" value="Edit Friend">
                   </form>
 

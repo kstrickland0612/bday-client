@@ -25,7 +25,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel{{event.id}}">Edit Event</h5>
+                  <h5 class="modal-title" id="exampleModalLabel{{event.id}}">Edit {{event.friend.first_name}} {{event.friend.last_name}}'s {{event.category}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -34,10 +34,10 @@
 
                   <form class="edit-event-form" data-id="{{event.id}}">
                     <input type="hidden" name="friend_id" value="{{event.friend.id}}">
-                    <input type="text" class="form-control" name="title" placeholder="Event Name">
-                    <input type="text" class="form-control" name="category" placeholder="Category">
-                    <input type="date" class="form-control" name="date" placeholder="Event Date">
-                    <input type="text" class="form-control" name="action" placeholder="Something Special">
+                    <input type="text" class="form-control" name="title" placeholder="Event Name" value="{{event.title}}">
+                    <input type="text" class="form-control" name="category" placeholder="Category" value="{{event.category}}">
+                    <input type="date" class="form-control" name="date" placeholder="Event Date" value="{{event.date}}">
+                    <input type="text" class="form-control" name="action" placeholder="Something Special" value="{{event.action}}">
                     <input type="submit" class="btn btn-primary edit-event-button" value="Edit Event">
                   </form>
 
