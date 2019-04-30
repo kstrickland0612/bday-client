@@ -67,7 +67,7 @@ I found that I actually needed a one to many relationships of users to friends a
 
 My V1 ERD:
 
-![V1 ERD](.public/ERD-V1.png "v1 ERD")
+![V1 ERD](./public/ERD-V1.png "v1 ERD")
 
 My final version ERD (notice all the bonus features from v1 are incorporated now):
 
@@ -112,7 +112,11 @@ I was able to complete user story 11 to store event actions (like gift ideas) on
 I was also able to render a calendar in my app using fullcalendar.io. I hope to improve the functionality of the app by adding all events to the rendered calendar.
 
 ## Wanna try it?
-[You can use Evento here!](https://kstrickland0612.github.io/evento-client/)
-[The deployed Heroku database lives here](https://sheltered-cliffs-69470.herokuapp.com/)
-[Take a look at my back-end repo here](https://github.com/kstrickland0612/evento-api)
-[Take a look at my front-end repo here](https://github.com/kstrickland0612/evento-client)
+
+### [You can use Evento here!](https://kstrickland0612.github.io/evento-client/)
+
+### [The deployed Heroku database lives here](https://sheltered-cliffs-69470.herokuapp.com/)
+
+### [Take a look at my back-end repo here](https://github.com/kstrickland0612/evento-api)
+
+### [Take a look at my front-end repo here](https://github.com/kstrickland0612/evento-client)
