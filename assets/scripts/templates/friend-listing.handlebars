@@ -2,6 +2,9 @@
   <thead>
     <tr>
       <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -11,7 +14,7 @@
         <th scope="row" data-id="{{friend.id}}"></th>
         <td>{{friend.first_name}} {{friend.last_name}}</td>
         <td>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEvents-{{friend.id}}" aria-expanded="false" aria-controls="#collapseEvents-{{friend.id}}">
+          <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseEvents-{{friend.id}}" aria-expanded="false" aria-controls="#collapseEvents-{{friend.id}}">
             Events
           </button>
 
@@ -20,9 +23,10 @@
               <p>This feature is coming soon</p>
             </div>
           </div>
+        </td>
         <td>
         <!-- this opens a modal for editing each friend -->
-        <button type="button" class="btn btn-primary edit-friend" data-toggle="modal" data-target="#friend-modal-{{friend.id}}">
+        <button type="button" class="btn btn-info edit-friend" data-toggle="modal" data-target="#friend-modal-{{friend.id}}">
           Edit
         </button>
         <!-- Edit Friend form within a modal-->
@@ -43,12 +47,12 @@
                       <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{friend.first_name}}">
                       <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{friend.last_name}}">
                       <input type="date" class="form-control" name="dob" placeholder="Birthdate" value="{{friend.dob}}">
-                      <input type="submit" class="btn btn-primary edit-friend-button" value="Edit Friend">
+                      <input type="submit" class="btn btn-info edit-friend-button" value="Edit Friend">
                   </form>
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
@@ -57,6 +61,7 @@
         <td>
         <button class="btn btn-danger delete-friend" data-id="{{friend.id}}">Delete</button>
         </td>
+      </tr>
 
       </section>
     {{/each}}

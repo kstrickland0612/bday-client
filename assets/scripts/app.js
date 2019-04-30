@@ -28,4 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
 $(() => {
   authevents.addHandlers()
   trackerevents.addHandlers()
+  trackerevents.runClock()
 })

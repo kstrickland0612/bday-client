@@ -13,7 +13,7 @@ const signUpSuccess = function (data) {
 }
 
 const signInSuccess = function (data) {
-  $('.user-message').text('Sign in success!')
+  $('.user-message').text('')
   $('form').trigger('reset')
   store.user = data.user
   $('#sign-in').hide()
@@ -46,6 +46,9 @@ const signOutSuccess = function (data) {
   $('.view-events').hide()
   $('.view-events-header').hide()
   $('#calendar').hide()
+  $('.add-friend-form').hide()
+  $('.add-event-form').hide()
+  $('.event-notifications').hide()
   $('h1').show()
 }
 

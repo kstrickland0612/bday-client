@@ -69,6 +69,16 @@ const getEvents = function () {
   })
 }
 
+const getEventsForNotifications = function () {
+  return $.ajax({
+    url: config.apiUrl + '/events',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const addEvent = function (data) {
   console.log(data)
   return $.ajax({
@@ -129,5 +139,6 @@ module.exports = {
   getEvents,
   addEvent,
   editEvent,
-  deleteEvent
+  deleteEvent,
+  getEventsForNotifications
 }

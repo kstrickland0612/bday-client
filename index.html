@@ -21,7 +21,7 @@
 
 <!-- NAV BAR -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-light" style="background-image: url('public/wood-grain-nav-background2.jpg')">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="background-image: url('public/nav-background2.jpg')">
   <a class="navbar-brand" href="#">Timely</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,13 @@
   </div>
 </nav>
 
+  <!-- Event Notifications -->
+  <header>
+    <div id="event-notifications" class="event-notifications"></div>
+  </header>
+
   <!-- User Message -->
+
   <div class="user-message"></div>
 
 <!-- ACCOUNT VIEW -->
@@ -70,11 +76,11 @@
                 <div class="changepw-message"></div>
                 <input type="password" name="passwords[old]" placeholder="old password">
                 <input type="password" name="passwords[new]" placeholder="new password">
-                <input type="submit" class="btn btn-primary change-password-submit" value="Change Password">
+                <input type="submit" class="btn btn-info change-password-submit" value="Change Password">
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -86,18 +92,18 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <!-- Change Password button-->
-          <button type="button" class="btn btn-primary change-password-button" data-toggle="modal" data-target="#changePW">
+          <button type="button" class="btn btn-info change-password-button" data-toggle="modal" data-target="#changePW">
             Change Password
           </button>
       </li>
       <li class="nav-item">
         <!-- View Friends button -->
-          <button type="button" class="btn btn-primary view-friends-button">View Friends</button>
+          <button type="button" class="btn btn-info view-friends-button">View Friends</button>
       </li>
 
       <li class="nav-item">
         <!-- View Events button -->
-          <button type="button" class="btn btn-primary view-events-button">View Events</button>
+          <button type="button" class="btn btn-info view-events-button">View Events</button>
       </li>
     </ul>
   </div>
@@ -109,18 +115,12 @@
   <div class="view-window">
 
     <!-- View Friends window -->
-    <section class="view-window">
-      <!-- <div class="view-friends-header">Friends</div> -->
-      <div id="view-friends" class="view-friends">
-      </div>
-    </section>
+    <div id="view-friends" class="view-friends">
+    </div>
 
     <!-- View Events window -->
-    <section class="view-window">
-      <!-- <div class="view-events-header">Events</div> -->
-      <div id="view-events" class="view-events">
-      </div>
-    </section>
+    <div id="view-events" class="view-events">
+    </div>
 
   </div>
 
@@ -129,11 +129,11 @@
 <!-- Add Friend form -->
       <form class="add-friend-form">
         <fieldset>
-          <legend>Add Friend</legend>
+          <h5>Add Friend</h5>
           <input type="text" class="form-control" name="first_name" placeholder="Last Name">
           <input type="text" class="form-control" name="last_name" placeholder="Last Name">
           <input type="date" class="form-control" name="dob" placeholder="Birthdate">
-          <button type="submit" class="btn btn-primary add-friend-button">Add Friend!</button>
+          <button type="submit" class="btn btn-info add-friend-button">Add Friend!</button>
         </fieldset>
       </form>
 
@@ -141,10 +141,10 @@
 
       <form class="add-event-form">
         <fieldset>
-          <legend>Add Event</legend>
+          <h5>Add Event</h5>
           <div id="view-options"></div>
           <input type="hidden" name="friend_id" value="friendIdFromForm" id="friendIdFromForm">
-          <select name="category" id="eventCat">
+          <select name="category" class="custom-select custom-select-sm" id="eventCat">
             <option>Event Type</option>
             <option value="Birthday">Birthday</option>
             <option value="Anniversary">Anniversary</option>
@@ -155,7 +155,7 @@
             <input id="category-select" value="" style="display: none;" type="text" class="form-control" name="category" placeholder="enter event type here"/>
           <input type="date" class="form-control" name="date" placeholder="Event Date">
           <input type="text" class="form-control" name="action" placeholder="Something Special">
-          <button type="submit" class="btn btn-primary add-event-button">Add Event!</button>
+          <button type="submit" class="btn btn-info add-event-button">Add Event!</button>
         </fieldset>
       </form>
 
@@ -168,7 +168,7 @@
             <input type="email" class="form-control" name="credentials[email]" placeholder="Email">
             <input type="password" class="form-control" name="credentials[password]" placeholder="Password">
             <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password Confirmation">
-            <button type="submit" class="btn btn-primary">sign up</button>
+            <button type="submit" class="btn btn-info">Sign Up</button>
             <p>Already have an account? <a class="sign-in-link" href="#">Click here to sign in</a>.</p>
           </fieldset>
         </form>
@@ -178,15 +178,19 @@
             <legend>Sign In</legend>
             <input type="email" class="form-control" name="credentials[email]" placeholder="Email">
             <input type="password" class="form-control" name="credentials[password]" placeholder="Password">
-            <button type="submit" class="btn btn-primary">sign in</button>
+            <button type="submit" class="btn btn-info">Sign In</button>
             <p>Don't have an account? <a class="sign-up-link" href="#">Click here to sign up</a>.</p>
           </fieldset>
         </form>
       </div>
 
-<div id="event-notifications"></div>
-
 <div id="calendar"></div>
+
+<div style="width:200px; margin:0 auto;" class="clock">
+  <div class="hand second"></div>
+  <div class="hand minute"></div>
+  <div class="hand hour"></div>
+</div>
 
 </div>
 
@@ -196,5 +200,5 @@
 
 </div>
 
-    </body>
+</body>
 </html>

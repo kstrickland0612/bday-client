@@ -146,6 +146,12 @@ function checkCatModal () {
   }
 }
 
+function onGetEventsForNotifications () {
+  api.getEventsForNotifications()
+    .then(ui.getEventsForNotificationsSuccess)
+    .catch(ui.getEventsFail)
+}
+
 // const calendar = ($('#calendar'), {
 //   plugins: [ dayGridPlugin ],
 //   events: {
@@ -153,6 +159,32 @@ function checkCatModal () {
 //   }
 //   calendar.render()
 // })
+
+function runClock () {
+  const now = new Date()
+
+  const hour = now.getHours() % 12
+  const min = now.getMinutes()
+  const sec = now.getSeconds()
+  const millisec = now.getMilliseconds()
+
+  const clock = document.querySelector('div.clock')
+  const hourHand = clock.querySelector('div.hour')
+  const minHand = clock.querySelector('div.minute')
+  const secHand = clock.querySelector('div.second')
+
+  const hourRotation = 30 * hour
+  const minRotation = 6 * min + (6)
+  const secRotation = 6 * sec
+
+  hourHand.style.transform = 'rotate(' + hourRotation + 'deg)'
+  minHand.style.transform = 'rotate(' + minRotation + 'deg)'
+  secHand.style.transform = 'rotate(' + secRotation + 'deg)'
+
+  requestAnimationFrame(runClock)
+}
+
+runClock()
 
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
@@ -174,8 +206,10 @@ const addHandlers = () => {
   $('body').on('hide.bs.modal', '.edit-event', closeEventModalRefresh)
   $('#eventCat').change(checkCat)
   $(document).change('eventCat-modal', checkCatModal)
+  $('.navbar').mouseenter(onGetEventsForNotifications)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  runClock
 }

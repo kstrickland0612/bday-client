@@ -1,0 +1,8 @@
+{{#each events as |event|}}
+  {{log event}}
+<section data-id="{{event-id}}">
+    {{#if (dateCompare event.date event) }}
+      <p>{{event.friend.first_name}}'s {{event.category}} is today!</p>
+    {{/if}}
+</section>
+{{/each}}

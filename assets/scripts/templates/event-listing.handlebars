@@ -5,6 +5,8 @@
       <th scope="col">Event</th>
       <th scope="col">Date</th>
       <th scope="col">Action</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +19,7 @@
         <td>{{event.action}}</td>
         <td>
         <!-- this opens a modal for editing each event -->
-        <button type="button" class="btn btn-primary edit-event" data-toggle="modal" data-target="#event-modal-{{event.id}}">
+        <button type="button" class="btn btn-info edit-event" data-toggle="modal" data-target="#event-modal-{{event.id}}">
           Edit
         </button>
         <!-- Edit Event form within a modal-->
@@ -38,12 +40,12 @@
                     <input type="text" class="form-control" name="category" placeholder="Category" value="{{event.category}}">
                     <input type="date" class="form-control" name="date" placeholder="Event Date" value="{{event.date}}">
                     <input type="text" class="form-control" name="action" placeholder="Something Special" value="{{event.action}}">
-                    <input type="submit" class="btn btn-primary edit-event-button">
+                    <input type="submit" class="btn btn-info edit-event-button" value="Edit Event">
                   </form>
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
@@ -53,7 +55,7 @@
         <td>
         <button class="btn btn-danger delete-event" data-id="{{event.id}}">Delete</button>
         </td>
+      </tr>
 
       </section>
-
     {{/each}}

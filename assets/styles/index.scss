@@ -1,20 +1,39 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'typography';
 
+$color-lightblue: #82CBD6;
+$color-teal: #2FA49B;
+$color-softgreen: #70BE94;
+$color-brightgreen: #B8DA7B;
+$color-lightgreen: #E4F2BF;
+$color-gray: #e1e8f0;
+
 h1 {
  font-family: 'Overpass', sans-serif;
  font-weight: bold;
  padding-top: 15px;
 }
 
-.navbar-brand {
+.navbar-brand,
+.btn,
+h5 {
+   font-family: 'Overpass', sans-serif;
+   font-weight: bold;
+}
+
+.navbar-brand,
+.view-window,
+.add-friend-form,
+.add-event-form,
+.sign-in-container,
+.user-message,
+footer,
+.event-notifications {
   font-family: 'Overpass', sans-serif;
-  font-weight: bold;
 }
 
 body {
-  background-image: url('public/clock-background.png');
-  background-repeat: no-repeat;
+  background-color: $color-gray;
 }
 
 html,
@@ -27,7 +46,22 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  background-color: $color-softgreen;
+}
+
+.event-notifications {
+  text-shadow: 1px 1px;
+  font-size: 24px;
+  padding-top: 15px;
 }
 
 .sign-in-container {
@@ -59,23 +93,24 @@ h1 {
   justify-content: flex-start;
   align-items: center;
   margin-left: 50px;
+  width: 600px;
+  margin-top: 20px;
+  padding: 20px;
 
   fieldset {
     border: 1px groove;
-    margin: 0 0 1.5em;
-    padding: 0 1.4em 1.4em;
-    width: inherit;
-  }
-
-  legend {
-    border-bottom: 0;
-    padding: 0 10px;
+    margin-top: 20px;
+    padding: 20px;
     width: inherit;
   }
 
   .form-control {
     margin: 5px;
   }
+}
+
+.custom-select {
+  margin: 5px;
 }
 
 .my-account {
@@ -94,7 +129,7 @@ h1 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 50px;
+  margin: 50px;
 }
 
 .page-container {
@@ -113,8 +148,41 @@ footer {
   bottom: 0;
   width: 100%;
   height: 60px;
-  padding-left: 20px;
   padding-top: 15px;
   opacity: 1;
-  background-color: rgba(0, 0, 0, 0.5)
+  background-color: rgba(0, 0, 0, 0.5);
+  color: $color-teal;
+  text-shadow: 1px 1px;
+}
+
+.clock {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background-image: url('public/Clock-No-Hands.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+}
+
+.hand {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background-color: $black;
+
+  bottom: 99px;
+  left: 99px;
+  transform-origin: 50% 100%;
+}
+
+.minute {
+  height: 75px;
+}
+
+.second {
+  height: 90px;
+  background-color: $color-teal
 }

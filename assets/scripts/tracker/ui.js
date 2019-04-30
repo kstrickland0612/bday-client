@@ -1,5 +1,6 @@
 const showFriendsTemplate = require('../templates/friend-listing.handlebars')
 const showEventsTemplate = require('../templates/event-listing.handlebars')
+const showEventNotificationsTemplate = require('../templates/event-notifications.handlebars')
 const showFriendsAsSelectOptionsTemplate = require('../templates/friend-options-listing.handlebars')
 
 const getFriendsSuccess = (data) => {
@@ -75,13 +76,22 @@ const addEventSuccess = function () {
   $('#category-select').hide()
 }
 
+const getEventsForNotificationsSuccess = (data) => {
+  const showEventNotifications = showEventNotificationsTemplate({ events: data.events })
+  $('#event-notifications').show()
+  $('#event-notifications').html(showEventNotifications)
+}
+
 const getEventsSuccess = (data) => {
   const showEventsHtml = showEventsTemplate({ events: data.events })
+  const showEventNotifications = showEventNotificationsTemplate({ events: data.events })
   $('.view-friends').hide()
   $('.view-friends-header').hide()
   $('.view-events').show()
   $('.view-events-header').show()
   $('.view-events').html(showEventsHtml)
+  $('#event-notifications').show()
+  $('#event-notifications').html(showEventNotifications)
   $('form').trigger('reset')
   $('.user-message').hide()
   $('.edit-event').modal('hide')
@@ -90,6 +100,7 @@ const getEventsSuccess = (data) => {
 }
 
 const getEventsFail = function (data) {
+  $('.view-friends').show()
   $('.view-friends').text('Something went wrong. Please try again.')
   $('form').trigger('reset')
   $('.user-message').hide()
@@ -133,5 +144,6 @@ module.exports = {
   editEventSuccess,
   editEventFail,
   deleteEventFail,
-  getFriendsAsOptionsSuccess
+  getFriendsAsOptionsSuccess,
+  getEventsForNotificationsSuccess
 }
