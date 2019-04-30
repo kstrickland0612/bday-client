@@ -8,6 +8,7 @@ const getFriendsSuccess = (data) => {
   $('.edit-friend').modal('hide')
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
+  $('.fade').remove()
   $('.view-events').hide()
   $('.view-events-header').hide()
   $('.view-friends').show()
@@ -97,6 +98,7 @@ const getEventsSuccess = (data) => {
   $('.edit-event').modal('hide')
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
+  $('.fade').remove()
 }
 
 const getEventsFail = function (data) {
