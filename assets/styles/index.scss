@@ -32,6 +32,11 @@ footer,
   font-family: 'Overpass', sans-serif;
 }
 
+.user-message {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   background-color: $color-gray;
   padding-right: 0 !important;
@@ -143,7 +148,7 @@ header {
 
 footer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   position:absolute;
   bottom: 0;
   width: 100%;
@@ -157,7 +162,7 @@ footer {
 
 .clock {
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
   width: 200px;
   height: 200px;
@@ -185,4 +190,8 @@ footer {
 .second {
   height: 90px;
   background-color: $color-teal
+}
+
+.calendar {
+  padding-top: 50px;
 }
