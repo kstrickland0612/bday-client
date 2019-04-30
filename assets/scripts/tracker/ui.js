@@ -130,13 +130,11 @@ const deleteEventFail = function () {
 }
 
 const calEvents = (data) => {
-  console.log(data)
-  const events = Object.entries(data)
+  const events = data.events
   console.log(events)
-  for (let myevent = 0; myevent < events.length; myevent++) {
-    console.log(Object.entries(myevent))
+  for (let event = 0; event < events.length; event++) {
+    console.log(Object.values(event))
   }
-  // calendar.addEvent(data)
 }
 
 module.exports = {

@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store.js')
 
 const onViewFriends = (event) => {
   event.preventDefault()
@@ -155,14 +156,6 @@ function onGetEventsForNotifications () {
     .catch(ui.getEventsFail)
 }
 
-// const calendar = ($('#calendar'), {
-//   plugins: [ dayGridPlugin ],
-//   events: {
-//     url: config.apiUrl + '/events'
-//   }
-//   calendar.render()
-// })
-
 function runClock () {
   const now = new Date()
 
@@ -195,18 +188,32 @@ document.addEventListener('DOMContentLoaded', function () {
     plugins: [ dayGridPlugin ],
     events: [
       {
-        title: 'Event',
-        date: '2019-04-25'
+
+        category: '',
+        date: ''
       }
     ]
   })
-
+  store.calendar = calendar
   calendar.render()
 })
 
-const onGetEventsForCalendar = function () {
+const updateCalendar = function () {
+  const calEvents = (data) => {
+    const events = data.events
+    for (let event = 0; event < events.length; event++) {
+      const title = (events[event].friend.first_name + ' ' + events[event].friend.last_name + "'s " + events[event].category)
+      const date = (events[event].date)
+      const createEventObject = function (propertyName1, propertyValue1, propertyName2, propertyValue2) {
+        const eventObject = { [propertyName1]: propertyValue1, [propertyName2]: propertyValue2 }
+        store.calendar.addEvent(eventObject)
+      }
+      createEventObject('title', title, 'date', date)
+    }
+  }
+
   api.getEvents()
-    .then(ui.calEvents)
+    .then(calEvents)
     .catch(ui.getEventsFail)
 }
 
@@ -231,7 +238,7 @@ const addHandlers = () => {
   $('#eventCat').change(checkCat)
   $(document).change('eventCat-modal', checkCatModal)
   $('.navbar').mouseenter(onGetEventsForNotifications)
-  $('.calendar-link').on('click', onGetEventsForCalendar)
+  $('.calendar-link').on('click', updateCalendar)
 }
 
 module.exports = {
