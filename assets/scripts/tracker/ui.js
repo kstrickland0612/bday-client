@@ -8,7 +8,6 @@ const getFriendsSuccess = (data) => {
   $('.edit-friend').modal('hide')
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
-  $('.fade').remove()
   $('.view-events').hide()
   $('.view-events-header').hide()
   $('.view-friends').show()
@@ -98,7 +97,6 @@ const getEventsSuccess = (data) => {
   $('.edit-event').modal('hide')
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
-  $('.fade').remove()
 }
 
 const getEventsFail = function (data) {
@@ -131,6 +129,16 @@ const deleteEventFail = function () {
   $('.user-message').text('Failed to delete friend. Please try again.')
 }
 
+const calEvents = (data) => {
+  console.log(data)
+  const events = Object.entries(data)
+  console.log(events)
+  for (let myevent = 0; myevent < events.length; myevent++) {
+    console.log(Object.entries(myevent))
+  }
+  // calendar.addEvent(data)
+}
+
 module.exports = {
   getFriendsSuccess,
   getFriendsFail,
@@ -147,5 +155,6 @@ module.exports = {
   editEventFail,
   deleteEventFail,
   getFriendsAsOptionsSuccess,
-  getEventsForNotificationsSuccess
+  getEventsForNotificationsSuccess,
+  calEvents
 }

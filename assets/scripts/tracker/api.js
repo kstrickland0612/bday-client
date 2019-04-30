@@ -59,17 +59,7 @@ const deleteFriend = function (id) {
   })
 }
 
-const getEvents = function () {
-  return $.ajax({
-    url: config.apiUrl + '/events',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
-
-const getEventsForNotifications = function () {
+const getEvents = function (data) {
   return $.ajax({
     url: config.apiUrl + '/events',
     method: 'GET',
@@ -139,6 +129,5 @@ module.exports = {
   getEvents,
   addEvent,
   editEvent,
-  deleteEvent,
-  getEventsForNotifications
+  deleteEvent
 }

@@ -150,7 +150,7 @@ function checkCatModal () {
 }
 
 function onGetEventsForNotifications () {
-  api.getEventsForNotifications()
+  api.getEvents()
     .then(ui.getEventsForNotificationsSuccess)
     .catch(ui.getEventsFail)
 }
@@ -195,14 +195,20 @@ document.addEventListener('DOMContentLoaded', function () {
     plugins: [ dayGridPlugin ],
     events: [
       {
-        title: '',
-        start: ''
+        title: 'Event',
+        date: '2019-04-25'
       }
     ]
   })
 
   calendar.render()
 })
+
+const onGetEventsForCalendar = function () {
+  api.getEvents()
+    .then(ui.calEvents)
+    .catch(ui.getEventsFail)
+}
 
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
@@ -225,6 +231,7 @@ const addHandlers = () => {
   $('#eventCat').change(checkCat)
   $(document).change('eventCat-modal', checkCatModal)
   $('.navbar').mouseenter(onGetEventsForNotifications)
+  $('.calendar-link').on('click', onGetEventsForCalendar)
 }
 
 module.exports = {

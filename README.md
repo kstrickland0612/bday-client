@@ -113,5 +113,6 @@ I was also able to render a calendar in my app using fullcalendar.io. I hope to 
 
 ## Wanna try it?
 [You can use Evento here!](https://kstrickland0612.github.io/evento-client/)
+[The deployed Heroku database lives here](https://sheltered-cliffs-69470.herokuapp.com/)
 [Take a look at my back-end repo here](https://github.com/kstrickland0612/evento-api)
 [Take a look at my front-end repo here](https://github.com/kstrickland0612/evento-client)
