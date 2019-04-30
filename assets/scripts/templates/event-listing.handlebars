@@ -15,7 +15,7 @@
       <tr>
         <th scope="row" data-id="{{event.id}}"></th>
         <td>{{event.friend.first_name}} {{event.friend.last_name}}'s {{event.category}}</td>
-        <td>{{event.date}}</td>
+        <td>{{dateFormat event.date}}</td>
         <td>{{event.action}}</td>
         <td>
         <!-- this opens a modal for editing each event -->

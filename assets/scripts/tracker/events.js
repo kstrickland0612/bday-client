@@ -1,3 +1,6 @@
+import { Calendar } from '@fullcalendar/core'
+import dayGridPlugin from '@fullcalendar/daygrid'
+
 const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
@@ -166,7 +169,6 @@ function runClock () {
   const hour = now.getHours() % 12
   const min = now.getMinutes()
   const sec = now.getSeconds()
-  const millisec = now.getMilliseconds()
 
   const clock = document.querySelector('div.clock')
   const hourHand = clock.querySelector('div.hour')
@@ -185,6 +187,22 @@ function runClock () {
 }
 
 runClock()
+
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar')
+
+  const calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin ],
+    events: [
+      {
+        title: '',
+        start: ''
+      }
+    ]
+  })
+
+  calendar.render()
+})
 
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
