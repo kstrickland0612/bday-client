@@ -11,6 +11,10 @@ $color-gray: #e1e8f0;
 h1 {
  font-family: 'Overpass', sans-serif;
  font-weight: bold;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-bottom: 10px;
  padding-top: 15px;
 }
 
@@ -48,13 +52,6 @@ body {
  position: relative;
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 header {
   display: flex;
   justify-content: center;
@@ -66,12 +63,14 @@ header {
 .event-notifications {
   text-shadow: 1px 1px;
   font-size: 24px;
+  text-align: center;
 }
 
 .sign-in-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 
   fieldset {
     border: 1px groove;
@@ -160,9 +159,7 @@ footer {
 }
 
 .clock {
-  position: fixed;
-  top: 0;
-  right: 0;
+  position: sticky;
   width: 200px;
   height: 200px;
   background-image: url('public/Clock-No-Hands.png');
@@ -191,6 +188,6 @@ footer {
   background-color: $color-teal
 }
 
-.calendar {
-  padding-top: 50px;
+a {
+  color: $color-teal;
 }
