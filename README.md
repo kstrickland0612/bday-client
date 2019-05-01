@@ -2,13 +2,13 @@
 
 Hello! Welcome to Evento. This app makes sure you never have to send a belated card, gift, or text ever again. It keeps track of your friends' birthdays and more, and tells you about the day's events each time you log on.
 
-Evento is a full-stack app I built during my time at General Asssembly's Software Engineering Immersive. This was my first time building a database from scratch, and I really enjoyed diving into the backend. Pretty cool considering I didn't know what ruby on rails was 3 weeks ago!
+Evento is a full-stack app I built during my time at General Asssembly's Software Engineering Immersive. This was my first time building a database from scratch, and I really enjoyed diving into the back-end with Rails.
 
 On the front-end, it was fun to think of the optimal user experience and work towards that with each new feature. By placing the user at the center of the project, I was able to think of some useful features to build that allowed me to flex a couple programming muscles I didn't know I had.
 
 One of the best parts of this project is how much it stretched me to find answers on my own, and in the process really solidify concepts that I've been a bit unsure of.
 
-I feel pretty great about the things I was able to learn throughout this project.
+I feel great about what I learned through this project.
 
 Enjoy!
 
@@ -31,31 +31,36 @@ Enjoy!
 
 ## Planning
 
-My first step in planning this app was to determine MVP based on the requirements.
+My first step in planning this app was to determine MVP based on the requirements provided to me.
 
 I set up a general schedule for myself with MVP features slated for the first two days of the project. I then added some scheduled time for debugging, layout, and extra features for the final two days.
 
-As I worked through the project I identified extra features, and because I got MVP early in the project process I was able to prioritize working through the extra features I was most excited about.
+As I worked through the project I identified extra features to work on, and because I hit MVP early in the project process I was able to prioritize working through the extra features I was most excited about.
 
-## Challenges/Learning Victories
+## Challenges/Victories
 
 - **Database structure**
 
-My original plan for this project was to have a user resource, which had a one to many relationship with a friends resource (one user, many friends). I also wanted to create an events resource in a one to many relationship with friends (one friend, many events). This being my first project building a backend, I did not completely understand how user_id and references should work when you are dealing with owned resources.
+My original plan for this project was to have a user resource, which had a one to many relationship with a friends resource (one user, many friends). I also wanted to create an events resource in a one to many relationship with friends (one friend, many events). With this being my first time building a back-end, I did not completely understand how user_id and references should work when you are dealing with owned resources.
 
-Once I realized that I needed to add a user_id foreign key to my friend and users tables, the database change was quite simple.
+Once I realized that I needed to add a user_id foreign key to my friend and users tables, the database change was very straightforward.
 
 I also determined that my controllers needed to inherit from the ProtectedController, and was able to work through that configuration once I knew the end goal.
 
 - **Populating a select dropdown with data from database**
 
-Imagine you are using an app, and in that app you are trying to edit an entry. But the edit form is asking you for that entry's id. You don't have that info. Even if you did have that id number, why wouldn't the app just let you pick the thing you want to update from a dropdown by its name rather than having to deal with id's? Wouldn't that be a better user experience?
-
-My database is set up so that a friend has many events. If you want to create an event, you must tie it to a specific friend that you've already created. I didn't want the user to have to know the friend_id in order to create an event, so I was able to build a solution with a select option list, handlebars, and a hidden input field. I created some methods to capture that friend_id without the user even knowing it. All they have to do is select from a dropdown list the friend they want to create the event under, and done!
+My database is set up so that a friend has many events. If you want to create an event, you must tie it to a specific friend that you've already created. I didn't want the user to have to know the friend_id in order to create an event, so I built a solution with a select option list, handlebars, and a hidden input field. I created some methods to capture that friend_id without the user even knowing it. All they have to do is select from a dropdown list the friend they want to create the event under, and done!
 
 - **Handlebars helpers**
 
-These little things are so useful! I was able to create a dateCompare helper that can tell me if an event is today, and from there display an appropriate message to my user. I also created a helper to format the dates in my app using moment.js to look like: Wednesday, September 2nd 2020.
+These little things are so useful! I created a dateCompare helper that can tell me if an event is today, and from there display an appropriate message to my user. I also created a helper to format the dates in my app using moment.js to look like: Wednesday, September 2nd 2020.
+
+- **Calendar view**
+
+I made a stretch goal to display all events in calendar format for the user. I used fullcalendar.io to accomplish this. I did run into some bugs because of the fact that I was reading from old docs and certain features I was tryingt o use have been since depricated. I learned the importance of making sure you're in the right doc version :)
+
+I'm proud of my updateCalendar function, which uses store as well as a .render() and .destroy() method to display an up-to-date calendar populated with all the user's events on the click of a button.
+
 
 ### ERD
 
@@ -65,11 +70,11 @@ My first ERD had a one to many relationship of users to friends, and another one
 
 I found that I actually needed a one to many relationships of users to friends and also of users to events, while keeping the one to many relationship of friends to events.
 
-My V1 ERD:
+- **My V1 ERD:**
 
 ![V1 ERD](./public/ERD-V1.png "v1 ERD")
 
-My final version ERD (notice all the bonus features from v1 are incorporated now):
+- **My final version ERD** (notice all the bonus features from v1 are incorporated now):
 
 ![ERD](./public/ERD.png "final ERD")
 
@@ -109,7 +114,7 @@ The extra features user stories above lay out the things I'm most interested in 
 
 I was able to complete user story 11 to store event actions (like gift ideas) on each event.
 
-I was also able to render a calendar in my app using fullcalendar.io. I hope to improve the functionality of the app by adding all events to the rendered calendar.
+I was also able to complete user story 14 by rendering a calendar in my app using fullcalendar.io. I built the functionality to add all the user's events to the calendar.
 
 ## Wanna try it?
 
@@ -118,5 +123,3 @@ I was also able to render a calendar in my app using fullcalendar.io. I hope to 
 ### [The deployed Heroku database lives here](https://sheltered-cliffs-69470.herokuapp.com/)
 
 ### [Take a look at my back-end repo here](https://github.com/kstrickland0612/evento-api)
-
-### [Take a look at my front-end repo here](https://github.com/kstrickland0612/evento-client)
