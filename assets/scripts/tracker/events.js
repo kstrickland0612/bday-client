@@ -181,9 +181,11 @@ function runClock () {
 
 runClock()
 
-document.addEventListener('DOMContentLoaded', function () {
+const updateCalendar = function () {
+  if (store.calendar) {
+    store.calendar.destroy()
+  }
   const calendarEl = document.getElementById('calendar')
-
   const calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin ],
     events: [
@@ -192,13 +194,13 @@ document.addEventListener('DOMContentLoaded', function () {
         category: '',
         date: ''
       }
-    ]
+    ],
+    eventColor: '#70BE94'
   })
-  store.calendar = calendar
-  calendar.render()
-})
 
-const updateCalendar = function () {
+  store.calendar = calendar
+  store.calendar.render()
+
   const calEvents = (data) => {
     const events = data.events
     for (let event = 0; event < events.length; event++) {
