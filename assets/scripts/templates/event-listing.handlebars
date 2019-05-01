@@ -11,7 +11,6 @@
   </thead>
   <tbody>
     {{#each events as |event|}}
-      {{log event}}
       <tr>
         <th scope="row" data-id="{{event.id}}"></th>
         <td>{{event.friend.first_name}} {{event.friend.last_name}}'s {{event.category}}</td>

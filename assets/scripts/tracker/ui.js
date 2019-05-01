@@ -129,14 +129,6 @@ const deleteEventFail = function () {
   $('.user-message').text('Failed to delete friend. Please try again.')
 }
 
-const calEvents = (data) => {
-  const events = data.events
-  console.log(events)
-  for (let event = 0; event < events.length; event++) {
-    console.log(Object.values(event))
-  }
-}
-
 module.exports = {
   getFriendsSuccess,
   getFriendsFail,
@@ -153,6 +145,5 @@ module.exports = {
   editEventFail,
   deleteEventFail,
   getFriendsAsOptionsSuccess,
-  getEventsForNotificationsSuccess,
-  calEvents
+  getEventsForNotificationsSuccess
 }

@@ -12,7 +12,6 @@ const getFriends = function () {
 }
 
 const addFriend = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiUrl + '/friends',
     method: 'POST',
@@ -30,8 +29,6 @@ const addFriend = function (data) {
 }
 
 const editFriend = function (data, id) {
-  console.log(id)
-  console.log(data)
   return $.ajax({
     url: config.apiUrl + `/friends/${id}`,
     method: 'PATCH',
@@ -49,7 +46,6 @@ const editFriend = function (data, id) {
 }
 
 const deleteFriend = function (id) {
-  console.log(id)
   return $.ajax({
     url: config.apiUrl + `/friends/${id}`,
     method: 'DELETE',
@@ -70,7 +66,6 @@ const getEvents = function (data) {
 }
 
 const addEvent = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiUrl + '/events',
     method: 'POST',
@@ -90,8 +85,6 @@ const addEvent = function (data) {
 }
 
 const editEvent = function (data, id) {
-  console.log(id)
-  console.log(data)
   return $.ajax({
     url: config.apiUrl + `/events/${id}`,
     method: 'PATCH',
@@ -111,7 +104,6 @@ const editEvent = function (data, id) {
 }
 
 const deleteEvent = function (id) {
-  console.log(id)
   return $.ajax({
     url: config.apiUrl + `/events/${id}`,
     method: 'DELETE',
