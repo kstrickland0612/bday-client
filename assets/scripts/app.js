@@ -10,10 +10,15 @@ const authevents = require('./auth/authevents.js')
 
 const trackerevents = require('./tracker/events.js')
 
+const clock = require('./tracker/clock.js')
+
+const calendar = require('./tracker/calendar.js')
+
 // const config = require('./config')
 
 $(() => {
   authevents.addHandlers()
   trackerevents.addHandlers()
-  trackerevents.runClock()
+  clock.runClock()
+  calendar.addHandlers()
 })

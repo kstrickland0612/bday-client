@@ -1,10 +1,6 @@
-import { Calendar } from '@fullcalendar/core'
-import dayGridPlugin from '@fullcalendar/daygrid'
-
 const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
-const store = require('../store.js')
 
 const onViewFriends = (event) => {
   event.preventDefault()
@@ -156,69 +152,6 @@ function onGetEventsForNotifications () {
     .catch(ui.getEventsFail)
 }
 
-function runClock () {
-  const now = new Date()
-
-  const hour = now.getHours() % 12
-  const min = now.getMinutes()
-  const sec = now.getSeconds()
-
-  const clock = document.querySelector('div.clock')
-  const hourHand = clock.querySelector('div.hour')
-  const minHand = clock.querySelector('div.minute')
-  const secHand = clock.querySelector('div.second')
-
-  const hourRotation = 30 * hour
-  const minRotation = 6 * min + (6)
-  const secRotation = 6 * sec
-
-  hourHand.style.transform = 'rotate(' + hourRotation + 'deg)'
-  minHand.style.transform = 'rotate(' + minRotation + 'deg)'
-  secHand.style.transform = 'rotate(' + secRotation + 'deg)'
-
-  requestAnimationFrame(runClock)
-}
-
-runClock()
-
-const updateCalendar = function () {
-  if (store.calendar) {
-    store.calendar.destroy()
-  }
-  const calendarEl = document.getElementById('calendar')
-  const calendar = new Calendar(calendarEl, {
-    plugins: [ dayGridPlugin ],
-    events: [
-      {
-
-        category: '',
-        date: ''
-      }
-    ],
-    eventColor: '#70BE94'
-  })
-
-  store.calendar = calendar
-  store.calendar.render()
-
-  const calEvents = (data) => {
-    const events = data.events
-    for (let event = 0; event < events.length; event++) {
-      const title = (events[event].friend.first_name + ' ' + events[event].friend.last_name + "'s " + events[event].category)
-      const date = (events[event].date)
-      const createEventObject = function (propertyName1, propertyValue1, propertyName2, propertyValue2) {
-        const eventObject = { [propertyName1]: propertyValue1, [propertyName2]: propertyValue2 }
-        store.calendar.addEvent(eventObject)
-      }
-      createEventObject('title', title, 'date', date)
-    }
-  }
-
-  api.getEvents()
-    .then(calEvents)
-    .catch(ui.getEventsFail)
-}
-
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.view-events-button').on('click', onViewEvents)
@@ -240,10 +173,8 @@ const addHandlers = () => {
   $('#eventCat').change(checkCat)
   $(document).change('eventCat-modal', checkCatModal)
   $('.navbar').mouseenter(onGetEventsForNotifications)
-  $('.calendar-link').on('click', updateCalendar)
 }
 
 module.exports = {
-  addHandlers,
-  runClock
+  addHandlers
 }
