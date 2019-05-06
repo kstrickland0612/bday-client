@@ -58,8 +58,9 @@ const updateCalendar = function () {
           return i + 'nd'
         } if (j === 3 && k !== 13) {
           return i + 'rd'
-        } else  {
+        } else {
           return i + 'th'
+        }
       }
       const title = (friends[friend].first_name + ' ' + friends[friend].last_name + "'s " + ordinalSuffix(ageCalculator()) + ' Birthday')
       const today = new Date()
