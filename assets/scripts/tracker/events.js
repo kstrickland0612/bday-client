@@ -1,6 +1,9 @@
 const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api.js')
 const ui = require('./ui.js')
+const moment = require('moment')
+const config = require('../config')
+const store = require('../store.js')
 
 const onViewFriends = (event) => {
   event.preventDefault()
@@ -14,6 +17,7 @@ const onAddFriend = (event) => {
 
   const data = getFormFields(event.target)
   api.addFriend(data)
+    .then(addFriendBirthday)
     .then(ui.addFriendSuccess)
     .catch(ui.addFriendFail)
 }
@@ -152,6 +156,100 @@ function onGetEventsForNotifications () {
     .catch(ui.getEventsFail)
 }
 
+const addFriendBirthday = function (data) {
+  const friend = data.friend
+  const birthday = (friend.dob)
+  const ageCalculator = function () {
+    const today = new Date()
+    const diff = (moment(today).format('YYYY')) - (moment(birthday).format('YYYY'))
+    return diff
+  }
+  const ordinalSuffix = function (i) {
+    const j = i % 10
+    const k = i % 100
+    if (j === 1 && k !== 11) {
+      return i + 'st'
+    } if (j === 2 && k !== 12) {
+      return i + 'nd'
+    } if (j === 3 && k !== 13) {
+      return i + 'rd'
+    } else {
+      return i + 'th'
+    }
+  }
+  const category = (ordinalSuffix(ageCalculator()) + ' Birthday')
+  const today = new Date()
+  const date = (moment(today).format('YYYY') + '-' + moment(friend.dob).format('MM-DD'))
+
+  $.ajax({
+    url: config.apiUrl + '/events',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      'event': {
+        'category': category,
+        'date': date,
+        'action': '',
+        'friend_id': friend.id
+      }
+    }
+  })
+}
+
+const newYear = function () {
+  const addFriendBirthdayNewYear = function (data) {
+    const friends = data.friends
+    for (let friend = 0; friend < friends.length; friend++) {
+      const birthday = (friends[friend].dob)
+      const ageCalculator = function () {
+        const today = new Date()
+        const diff = (moment(today).format('YYYY')) - (moment(birthday).format('YYYY'))
+        return diff
+      }
+      const ordinalSuffix = function (i) {
+        const j = i % 10
+        const k = i % 100
+        if (j === 1 && k !== 11) {
+          return i + 'st'
+        } if (j === 2 && k !== 12) {
+          return i + 'nd'
+        } if (j === 3 && k !== 13) {
+          return i + 'rd'
+        } else {
+          return i + 'th'
+        }
+      }
+      const category = (ordinalSuffix(ageCalculator()) + ' Birthday')
+      const today = new Date()
+      const date = (moment(today).format('YYYY') + '-' + moment(friends[friend].dob).format('MM-DD'))
+
+      $.ajax({
+        url: config.apiUrl + '/events',
+        method: 'POST',
+        headers: {
+          Authorization: 'Token token=' + store.user.token
+        },
+        data: {
+          'event': {
+            'category': category,
+            'date': date,
+            'action': '',
+            'friend_id': friends[friend].id
+          }
+        }
+      })
+    }
+  }
+  const today = new Date()
+  if (moment(today).format('MM-DD') === '01-01') {
+    api.getFriends()
+      .then(addFriendBirthdayNewYear)
+      .catch(ui.getEventsFail)
+  }
+}
+
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
   $('.view-events-button').on('click', onViewEvents)
@@ -176,5 +274,6 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  newYear
 }

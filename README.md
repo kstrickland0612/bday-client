@@ -116,6 +116,17 @@ I was able to complete user story 11 to store event actions (like gift ideas) on
 
 I was also able to complete user story 14 by rendering a calendar in my app using fullcalendar.io. I built the functionality to add all the user's events to the calendar.
 
+**UPDATE 05/06/2019:**
+Today I revisited my Evento code, 5 days after initially submitting it. I completed extra feature user story 17, which automatically adds friends' bithdays to the database and to the calendar view.
+
+I created an ageCalculator method, which, combined with an ordinalSuffix method, gives age information on each created birthday event. The goal here was readability and usefulness for the end user. For example, an auto-created birthday will read like: Albus Dumbledore's 138th Birthday.
+
+This function runs automatically when a new friend is created by the user so that the friends' birthday for the current year is automatically added to the database, to the user's account, and to the user's calendar view.
+
+I also created a function that runs on sign in success that checks to see if the current date is January 1, indicating a new calendar year. If so, I grab the list of all friends stored in the database for that user, and add a birthday for the current year under that friend in the database. The event is rendered just as above (Albus Dumbledore's 138th Birthday) in the user's account and in their calendar view.
+
+One area for improvement would be to run this function not if the date is 01-01 (like it currently is), but to run this function if the user has not logged on since January 1 of the current calendar year. This way, I wouldn't be banking on the user to log in on January 1 for the new years' birthdays to be auto-added into their account.  
+
 ## Wanna try it?
 
 ### [You can use Evento here!](https://kstrickland0612.github.io/evento-client/)

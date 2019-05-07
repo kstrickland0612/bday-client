@@ -1,4 +1,5 @@
 const store = require('../store.js')
+const trackerEvents = require('../tracker/events')
 
 const fail = function (data) {
   $('.user-message').text('Something went wrong. Please try again.')
@@ -21,6 +22,7 @@ const signInSuccess = function (data) {
   $('.nav').show()
   $('.navbar').show()
   $('#sign-out').show()
+  setTimeout(trackerEvents.newYear, 1000)
 }
 
 const changePwSuccess = function (data) {
