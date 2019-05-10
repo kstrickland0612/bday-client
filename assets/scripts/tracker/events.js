@@ -18,6 +18,7 @@ const onAddFriend = (event) => {
   const data = getFormFields(event.target)
   api.addFriend(data)
     .then(addFriendBirthday)
+    .then(addAnnualEvents)
     .then(ui.addFriendSuccess)
     .catch(ui.addFriendFail)
 }
@@ -51,6 +52,7 @@ const onAddEvent = (event) => {
 
   const data = getFormFields(event.target)
   api.addEvent(data)
+    .then(addAnnualEvents)
     .then(ui.addEventSuccess)
     .catch(ui.addEventFail)
 }
@@ -107,6 +109,29 @@ const getFriendId = (event) => {
   $('#friendIdFromForm').val($('#options :selected').val())
 }
 
+const getIsAnnualValue = (event) => {
+  if ($('#eventCat option:selected').val() === 'Birthday') {
+    $('#isAnnualForm').val('true')
+    console.log('#isAnnualForm set to true')
+  } else if ($('#eventCat option:selected').val() === 'Anniversary') {
+    $('#isAnnualForm').val('true')
+    console.log('#isAnnualForm set to true')
+  } else {
+    $('#isAnnualForm').val('false')
+    console.log('#isAnnualForm set to false')
+  }
+}
+
+const checked = (event) => {
+  if ($('#category-select-checkbox').prop('checked') === true) {
+    console.log('I am checked')
+    $('#isAnnualForm').val('true')
+  } else {
+    console.log('I am unchecked')
+    $('#isAnnualForm').val('false')
+  }
+}
+
 const onCalendar = (event) => {
   $('#calendar').show()
   $('.my-account').hide()
@@ -156,7 +181,9 @@ function onGetEventsForNotifications () {
     .catch(ui.getEventsFail)
 }
 
+// adds friends' birthday for current year when friend is created
 const addFriendBirthday = function (data) {
+  console.log(data)
   const friend = data.friend
   const birthday = (friend.dob)
   const ageCalculator = function () {
@@ -181,7 +208,7 @@ const addFriendBirthday = function (data) {
   const today = new Date()
   const date = (moment(today).format('YYYY') + '-' + moment(friend.dob).format('MM-DD'))
 
-  $.ajax({
+  return $.ajax({
     url: config.apiUrl + '/events',
     method: 'POST',
     headers: {
@@ -192,63 +219,143 @@ const addFriendBirthday = function (data) {
         'category': category,
         'date': date,
         'action': '',
-        'friend_id': friend.id
+        'friend_id': friend.id,
+        'is_annual': true
       }
     }
   })
 }
 
-const newYear = function () {
-  const addFriendBirthdayNewYear = function (data) {
-    const friends = data.friends
-    for (let friend = 0; friend < friends.length; friend++) {
-      const birthday = (friends[friend].dob)
-      const ageCalculator = function () {
-        const today = new Date()
-        const diff = (moment(today).format('YYYY')) - (moment(birthday).format('YYYY'))
-        return diff
-      }
-      const ordinalSuffix = function (i) {
-        const j = i % 10
-        const k = i % 100
-        if (j === 1 && k !== 11) {
-          return i + 'st'
-        } if (j === 2 && k !== 12) {
-          return i + 'nd'
-        } if (j === 3 && k !== 13) {
-          return i + 'rd'
-        } else {
-          return i + 'th'
-        }
-      }
-      const category = (ordinalSuffix(ageCalculator()) + ' Birthday')
-      const today = new Date()
-      const date = (moment(today).format('YYYY') + '-' + moment(friends[friend].dob).format('MM-DD'))
+// function to auto-add annual events to db and calendar
+const addAnnualEvents = function (data) {
+  console.log(data)
+  if (data.event.is_annual === true) {
+    const id = data.event.friend.id
+    const date = moment(data.event.date).format('MM-DD')
+    const today = new Date()
+    const thisYear = moment(today).format('YYYY')
+    // the 'years' variable sets how many annual events will be created automatically. Hard-coding this to 5 years initially.
+    const years = [1, 2, 3, 4, 5]
+    for (let year = 0; year < years.length; year++) {
+      const newYear = (parseInt(thisYear) + years[year])
+      const newDate = newYear + '-' + date
+      console.log(newDate)
 
-      $.ajax({
-        url: config.apiUrl + '/events',
-        method: 'POST',
-        headers: {
-          Authorization: 'Token token=' + store.user.token
-        },
-        data: {
-          'event': {
-            'category': category,
-            'date': date,
-            'action': '',
-            'friend_id': friends[friend].id
+      // birthday logic
+      if ((data.event.category).includes('Birthday')) {
+        const ageCalculator = function () {
+          const diff = newYear - (moment(data.event.friend.dob).format('YYYY'))
+          console.log(diff)
+          return diff
+        }
+        const ordinalSuffix = function (i) {
+          const j = i % 10
+          const k = i % 100
+          if (j === 1 && k !== 11) {
+            return i + 'st'
+          } if (j === 2 && k !== 12) {
+            return i + 'nd'
+          } if (j === 3 && k !== 13) {
+            return i + 'rd'
+          } else {
+            return i + 'th'
           }
         }
-      })
+        const birthdayCategory = (ordinalSuffix(ageCalculator()) + ' Birthday')
+        $.ajax({
+          url: config.apiUrl + '/events',
+          method: 'POST',
+          headers: {
+            Authorization: 'Token token=' + store.user.token
+          },
+          data: {
+            'event': {
+              'category': birthdayCategory,
+              'date': newDate,
+              'action': '',
+              'friend_id': id
+            }
+          }
+        })
+      // other event logic (not birthday)
+      } else {
+        const otherCategory = data.event.category
+        $.ajax({
+          url: config.apiUrl + '/events',
+          method: 'POST',
+          headers: {
+            Authorization: 'Token token=' + store.user.token
+          },
+          data: {
+            'event': {
+              'category': otherCategory,
+              'date': newDate,
+              'action': '',
+              'friend_id': id
+            }
+          }
+        })
+      }
     }
-  }
-  const today = new Date()
-  if (moment(today).format('MM-DD') === '01-01') {
-    api.getFriends()
-      .then(addFriendBirthdayNewYear)
-      .catch(ui.getEventsFail)
+  } else {
+    console.log('The event is not annual')
   }
 }
+
+// this function adds all friends' birthdays for the new year
+// will be obsolete once annual event auto-population works
+
+// const newYear = function () {
+//   const addFriendBirthdayNewYear = function (data) {
+//     const friends = data.friends
+//     for (let friend = 0; friend < friends.length; friend++) {
+//       const birthday = (friends[friend].dob)
+//       const ageCalculator = function () {
+//         const today = new Date()
+//         const diff = (moment(today).format('YYYY')) - (moment(birthday).format('YYYY'))
+//         return diff
+//       }
+//       const ordinalSuffix = function (i) {
+//         const j = i % 10
+//         const k = i % 100
+//         if (j === 1 && k !== 11) {
+//           return i + 'st'
+//         } if (j === 2 && k !== 12) {
+//           return i + 'nd'
+//         } if (j === 3 && k !== 13) {
+//           return i + 'rd'
+//         } else {
+//           return i + 'th'
+//         }
+//       }
+//       const category = (ordinalSuffix(ageCalculator()) + ' Birthday')
+//       const today = new Date()
+//       const date = (moment(today).format('YYYY') + '-' + moment(friends[friend].dob).format('MM-DD'))
+//
+//       $.ajax({
+//         url: config.apiUrl + '/events',
+//         method: 'POST',
+//         headers: {
+//           Authorization: 'Token token=' + store.user.token
+//         },
+//         data: {
+//           'event': {
+//             'category': category,
+//             'date': date,
+//             'action': '',
+//             'friend_id': friends[friend].id
+//           }
+//         }
+//       })
+//     }
+//   }
+//   const today = new Date()
+//   if (moment(today).format('MM-DD') === '01-01') {
+//     api.getFriends()
+//       .then(addFriendBirthdayNewYear)
+//       .catch(ui.getEventsFail)
+//   }
+// }
 
 const addHandlers = () => {
   $('.view-friends-button').on('click', onViewFriends)
@@ -264,6 +371,7 @@ const addHandlers = () => {
   $('.add-friend-link').on('click', onAddFriendLink)
   $('.add-event-link').on('click', onAddEventLink)
   $('#view-options').change(getFriendId)
+  $('#eventCat').change(getIsAnnualValue)
   $('.edit-friend').on('click', clearModalMessages)
   $('.edit-event').on('click', clearModalMessages)
   $('body').on('hide.bs.modal', '.edit-friend', closeFriendModalRefresh)
@@ -271,9 +379,9 @@ const addHandlers = () => {
   $('#eventCat').change(checkCat)
   $(document).change('eventCat-modal', checkCatModal)
   $('.navbar').mouseenter(onGetEventsForNotifications)
+  $('#category-select-checkbox').change(checked)
 }
 
 module.exports = {
-  addHandlers,
-  newYear
+  addHandlers
 }

@@ -78,7 +78,8 @@ const addEvent = function (data) {
         'category': data.category,
         'date': data.date,
         'action': data.action,
-        'friend_id': data.friend_id
+        'friend_id': data.friend_id,
+        'is_annual': data.is_annual
       }
     }
   })
