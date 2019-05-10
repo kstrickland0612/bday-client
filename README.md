@@ -125,7 +125,20 @@ This function runs automatically when a new friend is created by the user so tha
 
 I also created a function that runs on sign in success that checks to see if the current date is January 1, indicating a new calendar year. If so, I grab the list of all friends stored in the database for that user, and add a birthday for the current year under that friend in the database. The event is rendered just as above (Albus Dumbledore's 138th Birthday) in the user's account and in their calendar view.
 
-One area for improvement would be to run this function not if the date is 01-01 (like it currently is), but to run this function if the user has not logged on since January 1 of the current calendar year. This way, I wouldn't be banking on the user to log in on January 1 for the new years' birthdays to be auto-added into their account.  
+One area for improvement would be to run this function not if the date is 01-01 (like it currently is), but to run this function if the user has not logged on since January 1 of the current calendar year. This way, I wouldn't be banking on the user to log in on January 1 for the new years' birthdays to be auto-added into their account.
+
+ **UPDATE 05/10/2019:**
+I improved on the last update by removing the function that creates the new years' birthdays on January 1st and replaced it with a much more comprehensive feature that does not rely on the user logging in on January 1st.
+
+I added an addAnnualEvents function that takes any event just created and adds new events to the database if that original event is an annual event. I added logic to make birthdays and anniversaries default to be annual events, meaning future years' events will be automatically populated when the original event is created. I also added a checkbox that allows the user to indicate whether or not an event they are creating is annual. If the box is checked, future years' events will be automatically generated when the original event is created. I have set the annual events to get 5 years (future-looking) of auto-created instances of the event, though this range is very flexible in my code and can be easily edited.
+
+On the back-end, I added an is_annaul boolean column to my events table.
+
+This feature is a huge improvement on what I originally had. It gives the user the ability to make any type of event annual or one-time, and it auto-adds these events to the user's account and calendar view.
+
+I enjoyed the practice with HTML input type="checkbox" and using checkboxes to manipulate data fields.
+
+One area for improvement would be to create a filter in the event view in the user's account. Currently since so many events are auto-created with this new feature, that view can get pretty long and is not the most useful thing anymore. If the user has a way to filter through the data displayed in that view, it will be useful again. 
 
 ## Wanna try it?
 
